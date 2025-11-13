@@ -1,22 +1,18 @@
 import { useState, useEffect, useRef } from "react";
 import "./Animation.css";
 
-
 import football from "/img/Football.png";
 import basketball from "/img/Basketball.png";
 import volleyball from "/img/volleyball.png";
 import micky from "/img/micky.png";
 import human from "/img/Human.png";
 
-
 const Animation = () => {
-  // 🔹 ตัวแปรสถานะ
   const [running, setRunning] = useState(false);
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
   const [selected, setSelected] = useState("none");
 
-  // 🔹 ค่าคงที่
   const fieldWidth = 650;
   const fieldHeight = 400;
   const ballDiameter = 100;
@@ -29,15 +25,12 @@ const Animation = () => {
   const goDown = useRef(true);
   const intervalRef = useRef(null);
 
-  // 🔹 กด RUN/PAUSE
   const handleRun = () => setRunning((prev) => !prev);
 
-  // 🔹 ฟังก์ชันเลือกภาพ
   const handleSelect = (name) => {
     setSelected(name);
   };
 
-  // 🔹 ฟังก์ชันเคลื่อนไหวลูกบอล
   const calculate = () => {
     let newX = x;
     let newY = y;
@@ -62,7 +55,6 @@ const Animation = () => {
     setY(newY);
   };
 
-  // 🔹 เริ่ม/หยุด animation
   useEffect(() => {
     if (running) {
       intervalRef.current = setInterval(calculate, 25);
@@ -72,7 +64,6 @@ const Animation = () => {
     return () => clearInterval(intervalRef.current);
   }, [running, x, y]);
 
-  // 🔹 กำหนดรูปภาพตามที่เลือก
   const imageMap = {
     football,
     basketball,
@@ -106,7 +97,6 @@ const Animation = () => {
         <div id="ball" className="anim-ball" style={ballStyle}></div>
       </div>
 
-      {/* 🔹 ปุ่มควบคุม */}
       <div className="anim-control d-flex justify-content-between mt-3">
         <button
           id="run"
@@ -128,7 +118,6 @@ const Animation = () => {
             None
           </button>
 
-          {/* 🔹 ใช้ชื่อ key ให้ตรงกับไฟล์จริง */}
           {["basketball", "football", "volleyball", "human", "micky"].map(
             (item) => (
               <button
