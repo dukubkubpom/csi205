@@ -1,13 +1,13 @@
 import React from 'react';
 import './Home.css'; 
-
+import human from "/img/Human.png";
 const Home = () => {
   return (
     <div className="home-container">
       <div className="profile-card">
         
         <img 
-          src="./img/Human.png" 
+          src={human} 
           alt="รูปโปรไฟล์ของกษิดิ์เดช"
           className="profile-pic"
         />

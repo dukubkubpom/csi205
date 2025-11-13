@@ -1,19 +1,27 @@
 import { useState, useEffect, useRef } from "react";
 import "./Animation.css";
+
+
+import football from "/img/Football.png";
+import basketball from "/img/Basketball.png";
+import volleyball from "/img/volleyball.png";
+import micky from "/img/micky.png";
+import human from "/img/Human.png";
+
+
 const Animation = () => {
-  // ตัวแปรสถานะ
+  // 🔹 ตัวแปรสถานะ
   const [running, setRunning] = useState(false);
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
   const [selected, setSelected] = useState("none");
 
-  // ค่าคงที่
+  // 🔹 ค่าคงที่
   const fieldWidth = 650;
   const fieldHeight = 400;
   const ballDiameter = 100;
   const maxX = fieldWidth - ballDiameter - 2;
   const maxY = fieldHeight - ballDiameter - 2;
-
   const vx = 5;
   const vy = 5;
 
@@ -21,15 +29,15 @@ const Animation = () => {
   const goDown = useRef(true);
   const intervalRef = useRef(null);
 
-  // ฟังก์ชันเมื่อคลิก RUN/PAUSE
-  const handleRun = () => setRunning(!running);
+  // 🔹 กด RUN/PAUSE
+  const handleRun = () => setRunning((prev) => !prev);
 
-  // ฟังก์ชันเลือกบอล
+  // 🔹 ฟังก์ชันเลือกภาพ
   const handleSelect = (name) => {
     setSelected(name);
   };
 
-  // ฟังก์ชันคำนวณการเคลื่อนที่
+  // 🔹 ฟังก์ชันเคลื่อนไหวลูกบอล
   const calculate = () => {
     let newX = x;
     let newY = y;
@@ -54,7 +62,7 @@ const Animation = () => {
     setY(newY);
   };
 
-  // เริ่ม/หยุด animation
+  // 🔹 เริ่ม/หยุด animation
   useEffect(() => {
     if (running) {
       intervalRef.current = setInterval(calculate, 25);
@@ -64,7 +72,15 @@ const Animation = () => {
     return () => clearInterval(intervalRef.current);
   }, [running, x, y]);
 
-  // สไตล์บอลตามที่เลือก
+  // 🔹 กำหนดรูปภาพตามที่เลือก
+  const imageMap = {
+    football,
+    basketball,
+    volleyball,
+    micky,
+    human,
+  };
+
   const ballStyle = {
     left: `${x}px`,
     top: `${y}px`,
@@ -74,7 +90,7 @@ const Animation = () => {
     borderRadius: "50%",
     backgroundColor: selected === "none" ? "lightblue" : "transparent",
     backgroundImage:
-      selected !== "none" ? `url(./img/${selected}.png)` : "none",
+      selected !== "none" ? `url(${imageMap[selected]})` : "none",
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
@@ -90,8 +106,8 @@ const Animation = () => {
         <div id="ball" className="anim-ball" style={ballStyle}></div>
       </div>
 
-      {/* ปุ่มควบคุม */}
-      <div className="anim-control d-flex justify-content-between">
+      {/* 🔹 ปุ่มควบคุม */}
+      <div className="anim-control d-flex justify-content-between mt-3">
         <button
           id="run"
           type="button"
@@ -112,24 +128,22 @@ const Animation = () => {
             None
           </button>
 
-          {["Basketball", "Football", "volleyball", "Human", "micky"].map(
+          {/* 🔹 ใช้ชื่อ key ให้ตรงกับไฟล์จริง */}
+          {["basketball", "football", "volleyball", "human", "micky"].map(
             (item) => (
               <button
                 key={item}
                 className={`btn ${
-                  selected === item.toLowerCase()
-                    ? "btn-primary"
-                    : "btn-outline-primary"
+                  selected === item ? "btn-primary" : "btn-outline-primary"
                 } ms-1`}
-                onClick={() => handleSelect(item.toLowerCase())}
+                onClick={() => handleSelect(item)}
               >
-                {item}
+                {item.charAt(0).toUpperCase() + item.slice(1)}
               </button>
             )
           )}
         </div>
       </div>
-
     </div>
   );
 };

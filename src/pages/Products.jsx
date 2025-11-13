@@ -9,7 +9,7 @@ function Products({ products, carts, setCarts }) {
         {products.map((product) => {
           return (
             <Card style={{ width: "18rem" }} key={product.id}>
-              <Card.Img variant="top" src={product.thumbnailUrl} />
+              <Card.Img variant="top" src={product.thumbnailUrl} style={{ width: '150px', height: '150px', objectFit: 'cover', margin: '1rem auto 0' }}/>
               <Card.Body>
                 <Card.Title>{product.title}</Card.Title>
                 <Card.Text>

@@ -13,6 +13,7 @@ function Login({ setToken, setRole }) {
         type="text"
         id="username"
         placeholder="user"
+        title="type : user"
         style={{ textAlign: "center" }}
         ref={userRef}
       />
@@ -21,6 +22,7 @@ function Login({ setToken, setRole }) {
         type="password"
         id="password"
         placeholder="pass"
+        title="typr : pass"
         style={{ textAlign: "center" }}
         ref={passRef}
       />
