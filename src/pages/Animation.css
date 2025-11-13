@@ -1,0 +1,37 @@
+.anim-container {
+    border: 1px solid black;
+    width: fit-content;
+    margin: auto;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.anim-field {
+    width: 700px;
+    background-image: url(1.jpg);
+    height: 400px;
+    border: 1px solid black;
+    background-position: center;
+    background-size: contain;
+    border-radius: 1rem;
+}
+
+.anim-ball {
+    --border: 1px solid black;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    background-color: green;
+    --background-image: url(1.png);
+    background-position: center;
+    background-size: contain;
+    position: relative;
+    /* fWidth - bDiameter - 2fBorder */
+    /* left: calc(700px - 200px - 2px); */
+    top: 0px;
+    left: 0px;
+}
+
+.anim-control {
+    margin-top: 1rem;
+}
