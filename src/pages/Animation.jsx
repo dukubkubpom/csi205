@@ -6,6 +6,7 @@ import basketball from "/img/Basketball.png";
 import volleyball from "/img/volleyball.png";
 import micky from "/img/micky.png";
 import human from "/img/Human.png";
+import wood from "/img/wood.png";
 
 const Animation = () => {
   const [running, setRunning] = useState(false);
@@ -26,10 +27,7 @@ const Animation = () => {
   const intervalRef = useRef(null);
 
   const handleRun = () => setRunning((prev) => !prev);
-
-  const handleSelect = (name) => {
-    setSelected(name);
-  };
+  const handleSelect = (name) => setSelected(name);
 
   const calculate = () => {
     let newX = x;
@@ -87,17 +85,25 @@ const Animation = () => {
     backgroundRepeat: "no-repeat",
   };
 
+  const fieldStyle = {
+    width: fieldWidth,
+    height: fieldHeight,
+    border: "2px solid #333",
+    position: "relative",
+    margin: "auto",
+    borderRadius: "10px",
+    backgroundImage: `url(${wood})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  };
+
   return (
-    <div className="anim-container">
-      <div
-        id="field"
-        className="anim-field"
-        style={{ width: fieldWidth, height: fieldHeight }}
-      >
+    <div className="anim-container text-center">
+      <div id="field" className="anim-field" style={fieldStyle}>
         <div id="ball" className="anim-ball" style={ballStyle}></div>
       </div>
 
-      <div className="anim-control d-flex justify-content-between mt-3">
+      <div className="anim-control d-flex justify-content-between mt-3 align-items-center">
         <button
           id="run"
           type="button"
