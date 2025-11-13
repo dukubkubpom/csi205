@@ -22,7 +22,7 @@ function Login({ setToken, setRole }) {
         type="password"
         id="password"
         placeholder="pass"
-        title="typr : pass"
+        title="type : pass"
         style={{ textAlign: "center" }}
         ref={passRef}
       />
